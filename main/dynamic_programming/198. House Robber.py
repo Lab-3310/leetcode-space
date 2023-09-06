@@ -53,6 +53,6 @@ class Solution(object):
                 rob_max = max(max0 + i, max1)   # evaluate whether it's better to rob the current house
                 max0 = max1                     # update max0, max1
                 max1 = rob_max
+            return rob_max
         
-        elif 1 <= lenth <= 2: rob_max = max(nums)   
-        return rob_max
+        return max(nums) #elif 1 <= lenth <= 2: rob_max = max(nums)   
