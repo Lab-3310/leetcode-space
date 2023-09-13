@@ -40,8 +40,7 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        fib_li = [0, 1]
+        fib_li = [0] + [1]*(n)
         for i in range(2, n+1):
-            fib_li.append(fib_li[i-2] + fib_li[i-1])
-
+            fib_li[i] = fib_li[i-2] + fib_li[i-1]
         return fib_li[n]
