@@ -27,7 +27,7 @@ Explanation: F(4) = F(3) + F(2) = 2 + 1 = 3.
 Note from Hottari
 
 
-Sol. I  (https://www.youtube.com/watch?v=9XQ0SCx03zY)
+Sol. I
 
 Step 1: initialize the f[0], f[1] -> fib_li = [0, 1]
 Step 2: calculate f[n] for f[n] = f[n-2] + f[n-1].
