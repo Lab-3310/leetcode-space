@@ -35,8 +35,8 @@ n=1: 'a', 'e', 'i', 'o', 'u'
      (1 +  1  + 1  + 1  + 1)
 n=2:  consider each alphabet after itself  
 (1)         'uu'
-(2 = 1+1)   'oo', 'ou
-(3 = 2+1)   'ii', 'io', 'iu'
+(2 = 1+1)   'oo'  &  'ou
+(3 = 2+1)   'ii'  &  'io'  &  'iu'
 .
 .
 .
