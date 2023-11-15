@@ -26,44 +26,35 @@ Output: 104
 
 """
 
-
 class Solution(object):
     def stoneGameII(self, piles):
         """
         :type piles: List[int]
         :rtype: int
         """
-
         n = len(piles)
-        prefix_sum = [0] * (n + 1)
+        prefix_sum = [0] * (n + 1)                  # Initialize a prefix sum array for efficient subarray sum calculations
+        dp = {}                                     # Memoization dictionary to store computed results
 
-        for i in range(n - 1, -1, -1):
+        for i in range(n - 1, -1, -1):              # Calculate prefix sum from right to left
             prefix_sum[i] = prefix_sum[i + 1] + piles[i]
-
-        dp = {}
-
-        def dfs(i, M):
-            if i == n:
-                return 0
-
-            if (i, M) in dp:
-                return dp[(i, M)]
-
-            res = float("-inf")
-
-            for X in range(1, 2 * M + 1):
-                if i + X > n:
-                    break
-
-                opponent_best = dfs(i + X, max(M, X))
-                current_score = prefix_sum[i] - opponent_best
-
+ 
+        def dfs(i, M):                              # Recursive function to explore all possible moves and calculate the optimal score
+            
+            res = float("-inf")                     # Initialize the maximum score for the current state for Bob turn     
+            if i == n: return 0                     # Base case: If all piles are processed, return 0
+            if (i, M) in dp: return dp[(i, M)]      # Memoization check: Return memoized result if available
+ 
+            for X in range(1, 2 * M + 1):           # Explore all possible choices of X (number of piles to take)
+                if i + X > n:  break
+                opponent_best = dfs(i + X, max(M, X))                   # Calculate the opponent's best move by recursively calling dfs
+                current_score = prefix_sum[i] - opponent_best           # Calculate the current player's score
                 res = max(res, current_score)
+            dp[(i, M)] = res                        # Memoize the result for the current state
 
-            dp[(i, M)] = res
             return res
-
-        return dfs(i=0, M=1)
+        
+        return dfs(i=0, M=1)                        # Call the dfs function with initial parameters i=0 and M=1
 
 
 """
