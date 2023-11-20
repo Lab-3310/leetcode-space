@@ -76,14 +76,14 @@ class Solution(object):
         :rtype: int
         """
 
-        row = [1]*n                             # initial row is bottom row
+        row = [1]*n                                     # initial row is bottom row
         for i in range(m-1):
-            upper_row = [1]*n
+            upper_row = [1]*n                           # initial upper_row (only upper_row[-1] will be used)
 
-            for j in range( (n-1)-1, -1, -1):   # bottom and right are all 1
-                upper_row[j] = upper_row[j+1] + row[j]
+            for j in range( (n-1)-1, -1, -1):           # bottom and right are all 1
+                upper_row[j] = upper_row[j+1] + row[j]  # add the right path(upper_row[j+1]) and down path(row[j]) to be a real upper_row
             
-            row = upper_row
+            row = upper_row                             # update the row
 
         return row[0]
 
