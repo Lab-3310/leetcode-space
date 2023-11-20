@@ -27,6 +27,45 @@ Explanation: From the top-left corner, there are a total of 3 ways to reach the 
  
 
 
+note from Hottari
+
+from S to T
+ - - - - - -
+|S| | | | | |
+ - - - - - -
+| | | | | | |
+ - - - - - -
+| | | | | |T|
+ - - - - - -
+
+->
+ - - - - - -
+| | | | | |1|
+ - - - - - -
+| | | | | |1|
+ - - - - - -
+|1|1|1|1|1|1|
+ - - - - - -
+
+->
+ - - - - - -
+| | | | | |1|
+ - - - - - -
+|6|5|4|3|2|1|
+ - - - - - -
+|1|1|1|1|1|1|
+ - - - - - -
+
+->
+ -- -- -- -- -- --
+|21|15|10| 6| 3| 1|
+ -- -- -- -- -- --
+| 6| 5| 4| 3| 2| 1|
+ -- -- -- -- -- --
+| 1| 1| 1| 1| 1| 1|
+ -- -- -- -- -- --
+ 
+
 """
 
 class Solution(object):
@@ -36,4 +75,16 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
+
+        row = [1]*n                             # initial row is bottom row
+        for i in range(m-1):
+            upper_row = [1]*n
+
+            for j in range( (n-1)-1, -1, -1):   # bottom and right are all 1
+                upper_row[j] = upper_row[j+1] + row[j]
+            
+            row = upper_row
+
+        return row[0]
+
 
