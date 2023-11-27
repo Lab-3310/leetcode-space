@@ -33,6 +33,59 @@ n == obstacleGrid[i].length
 1 <= m, n <= 100
 obstacleGrid[i][j] is 0 or 1.
 
+
+
+
+note from Hottari
+
+
+from S to T
+ - - - - - -
+|S| | | | | |
+ - - - - - -
+| | |1| | | |
+ - - - - - -
+| | | | | |T|
+ - - - - - -
+
+->
+ - - - - - -
+| | | | | |1|
+ - - - - - -
+| | |0| | |1|
+ - - - - - -
+|0|0|0|0|0|1|
+ - - - - - -
+
+->
+ - - - - - -
+| | | | | |1|
+ - - - - - -
+| | |0| | |1|
+ - - - - - -
+|1|1|1|1|1|1|
+ - - - - - -
+
+->
+ - - - - - -
+| | | | | |1|
+ - - - - - -
+|2|1|0|3|2|1|
+ - - - - - -
+|1|1|1|1|1|1|
+ - - - - - -
+
+->
+ -- -- -- -- -- --
+| 9| 7| 6| 6| 3| 1|
+ -- -- -- -- -- --
+| 2| 1| 0| 3| 2| 1|
+ -- -- -- -- -- --
+| 1| 1| 1| 1| 1| 1|
+ -- -- -- -- -- --
+
+
+
 """
 
 class Solution(object):
@@ -41,3 +94,18 @@ class Solution(object):
         :type obstacleGrid: List[List[int]]
         :rtype: int
         """
+
+        m, n = len(obstacleGrid), len(obstacleGrid[0])
+        
+        row = [0]*n
+        row[n-1] = 1
+        
+        for i in reversed(range(m)):
+            for j in reversed(range(n)):
+                if obstacleGrid[i][j]: 
+                    row[j]=0
+
+                elif j < n-1: 
+                    row[j] += row[j+1]
+        
+        return row[0]
